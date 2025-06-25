@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        playerCamera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0);
+        playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, applyCrouchPosY, playerCamera.transform.localPosition.z);
         yield return new WaitForSeconds(1f);
     }
     private void Move()
