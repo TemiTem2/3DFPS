@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
+    private GunController gunController;
 
 
     private Rigidbody myRb;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         originalPosY = playerCamera.transform.localPosition.y;
         applyCrouchPosY = originalPosY;
+        gunController = FindAnyObjectByType<GunController>();
     }
 
     // Update is called once per frame
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour
             {
                 Crouch();
             }
-
+            gunController.CancleFIneSight();
             isRun = true;
             applySpeed = RunSpeed;
         }
