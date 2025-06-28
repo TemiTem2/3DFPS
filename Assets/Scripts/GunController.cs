@@ -228,4 +228,9 @@ public class GunController : MonoBehaviour
             yield return null;
         }
     }
+
+    public Gun GetGun() //현재 총 정보 반환
+    {
+        return currentGun;
+    }
 }
