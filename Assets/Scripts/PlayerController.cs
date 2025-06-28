@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     private void Isground()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
-        crosshair.RunningAnimation(!isGround);
+        crosshair.JumpAnimation(!isGround);
     }
     private void TryRun()
     {
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             {
                 Crouch();
             }
-            gunController.CancleFIneSight();
+            gunController.CancelFineSight();
             isRun = true;
             applySpeed = RunSpeed;
         }

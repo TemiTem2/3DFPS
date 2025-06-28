@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    public static bool isActive = true;
 
     [SerializeField]
     private Gun currentGun; // 총 정보
@@ -31,13 +32,18 @@ public class GunController : MonoBehaviour
         originPos = Vector3.zero; // 초기 위치 설정
         audioSource = GetComponent<AudioSource>();
         crosshair = FindAnyObjectByType<Crosshair>();
+
+        WeaponManager.currentWeapon = currentGun.GetComponent<Transform>();
+        WeaponManager.currentWeaponAnim = currentGun.anim;
     }
     void Update()
     {
+        if (isActive) { 
         GunFireRateCalc();
         TryFire();
         TryReload();
         TryFineSight();
+        }
     }
 
     private void GunFireRateCalc() //연사속도 계산
@@ -65,7 +71,7 @@ public class GunController : MonoBehaviour
                 Shoot();
             else
             {
-                CancleFIneSight();
+                CancelFineSight();
                 StartCoroutine(ReloadCoroutine());
             }
         }
@@ -149,8 +155,17 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && !isReload && currentGun.currentBulletCount < currentGun.reloadBulletCount)   
         {
-            CancleFIneSight();
+            CancelFineSight();
             StartCoroutine(ReloadCoroutine());
+        }
+    }
+
+    public void CancelReload()
+    {
+        if (isReload)
+        {
+            StopAllCoroutines();
+            isReload = false;
         }
     }
 
@@ -194,7 +209,7 @@ public class GunController : MonoBehaviour
         }
     }
 
-    public void CancleFIneSight() //정조준 취소
+    public void CancelFineSight() //정조준 취소
     {
         if (isFineSightMode)
         {
@@ -246,5 +261,20 @@ public class GunController : MonoBehaviour
     public bool GetFinesightMode()
     {
         return isFineSightMode;
+    }
+
+    public void GunChange(Gun gun)
+    {
+        if(WeaponManager.currentWeapon !=null)
+            WeaponManager.currentWeapon.gameObject.SetActive(false); // 현재 무기 비활성화
+
+        currentGun = gun; // 새로운 총 설정
+        WeaponManager.currentWeapon = currentGun.GetComponent<Transform>();
+        WeaponManager.currentWeaponAnim = currentGun.anim;
+
+
+        currentGun.transform.localPosition = Vector3.zero;
+        currentGun.gameObject.SetActive(true);
+        isActive = true;
     }
 }

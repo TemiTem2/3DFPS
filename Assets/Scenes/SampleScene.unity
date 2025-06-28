@@ -912,6 +912,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bcab717a660984c4fbc6a11abf1da2aa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1676654837295469583, guid: bcab717a660984c4fbc6a11abf1da2aa, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -5926,7 +5930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693279528
 Transform:
   m_ObjectHideFlags: 0
@@ -7052,6 +7056,7 @@ GameObject:
   - component: {fileID: 1609419703}
   - component: {fileID: 1609419704}
   - component: {fileID: 1609419705}
+  - component: {fileID: 1609419706}
   m_Layer: 2
   m_Name: Holder
   m_TagString: Untagged
@@ -7083,7 +7088,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609419701}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79e28b8b24d3064c9d3f4788ee24c91, type: 3}
   m_Name: 
@@ -7202,6 +7207,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1609419706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609419701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b9f6798c88ce248b90e932b854b70c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeWeaponDelayTime: 0.1
+  changeWeaponEndDelayTime: 0.1
+  guns:
+  - {fileID: 876728301}
+  hands:
+  - {fileID: 1751639628}
+  gunController: {fileID: 1609419704}
+  handController: {fileID: 1609419703}
+  currentWeaponType: Gun
 --- !u!1 &1678111063
 GameObject:
   m_ObjectHideFlags: 0
@@ -7360,7 +7386,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1706810295
 GameObject:
