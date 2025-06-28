@@ -22,6 +22,7 @@ public class GunController : MonoBehaviour
 
     [SerializeField]
     private Camera thecam;
+    private Crosshair crosshair;
 
     [SerializeField]
     private GameObject hit_effect_prefab;
@@ -29,6 +30,7 @@ public class GunController : MonoBehaviour
     {
         originPos = Vector3.zero; // 초기 위치 설정
         audioSource = GetComponent<AudioSource>();
+        crosshair = FindAnyObjectByType<Crosshair>();
     }
     void Update()
     {
@@ -71,6 +73,7 @@ public class GunController : MonoBehaviour
 
     private void Shoot()//발사 후 계산
     {
+        crosshair.FireAnimation(); // 발사 애니메이션 실행
         currentGun.currentBulletCount--; // 총알 감소
         currentFireRate = currentGun.fireRate;
         PlaySE(currentGun.fire_Sound);
@@ -84,7 +87,12 @@ public class GunController : MonoBehaviour
 
     private void Hit()
     {
-        if(Physics.Raycast(thecam.transform.position, thecam.transform.forward, out hitinfo, currentGun.range))
+        if(Physics.Raycast(thecam.transform.position, 
+            thecam.transform.forward+ new Vector3(
+            Random.Range(-crosshair.GetGunAccuracy()-currentGun.accuracy, crosshair.GetGunAccuracy() + currentGun.accuracy), 
+            Random.Range(-crosshair.GetGunAccuracy() - currentGun.accuracy, crosshair.GetGunAccuracy() + currentGun.accuracy),
+            0)
+            , out hitinfo, currentGun.range))
         {
             var clone = Instantiate(hit_effect_prefab, hitinfo.point, Quaternion.LookRotation(hitinfo.normal)); // 히트 이펙트 생성
             Destroy(clone, 2f);
@@ -197,6 +205,7 @@ public class GunController : MonoBehaviour
     private void FineSight()//정조준 로직
     {
         isFineSightMode = !isFineSightMode;
+        crosshair.FineSightAnimation(isFineSightMode);
         currentGun.anim.SetBool("FineSightMode",isFineSightMode);
 
         if (isFineSightMode)
@@ -232,5 +241,10 @@ public class GunController : MonoBehaviour
     public Gun GetGun() //현재 총 정보 반환
     {
         return currentGun;
+    }
+
+    public bool GetFinesightMode()
+    {
+        return isFineSightMode;
     }
 }
