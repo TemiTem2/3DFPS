@@ -12,7 +12,7 @@ public class GunController : MonoBehaviour
 
     //상태변수
     private bool isReload = false;
-    private bool isFineSightMode = false;
+    public bool isFineSightMode = false;
 
     [SerializeField]
     private Vector3 originPos;
