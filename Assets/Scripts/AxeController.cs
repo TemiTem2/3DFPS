@@ -1,16 +1,20 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class HandController : CloseWeaponController
+public class AxeController : CloseWeaponController
 {
-    public static bool isActive = false;
+    public static bool isActive = true;
+
+    private void Start()
+    {
+        WeaponManager.currentWeapon = currentCloseWeapon.GetComponent<Transform>();
+        WeaponManager.currentWeaponAnim = currentCloseWeapon.anim;
+    }
     void Update()
     {
         if (isActive)
             TryAttack();
     }
-
 
     protected override IEnumerator HitCoroutine()
     {

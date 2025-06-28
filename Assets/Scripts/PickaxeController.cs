@@ -1,17 +1,15 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class HandController : CloseWeaponController
+public class PickaxeController : CloseWeaponController
 {
+
     public static bool isActive = false;
     void Update()
     {
         if (isActive)
             TryAttack();
     }
-
-
     protected override IEnumerator HitCoroutine()
     {
         while (isSwing)

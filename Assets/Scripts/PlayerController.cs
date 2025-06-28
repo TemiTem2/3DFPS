@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isRun&&!isCrouch&&isGround)
         {
-            if (Vector3.Distance(lastPos,transform.position) >= 0.001f)
+            if (Vector3.Distance(lastPos,transform.position) >= 0.0001f)
             {
                 isWalk = true;
             }
