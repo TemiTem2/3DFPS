@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private Camera playerCamera;
     private GunController gunController;
     private Crosshair crosshair;
+    private StatusController statusController;
 
 
     private Rigidbody myRb;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         gunController = FindAnyObjectByType<GunController>();
         crosshair = FindAnyObjectByType<Crosshair>();
+        statusController = FindAnyObjectByType<StatusController>();
         applySpeed = WalkSpeed;
         originalPosY = playerCamera.transform.localPosition.y;
         applyCrouchPosY = originalPosY;
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
                 Crouch();
 
             }
+            statusController.DecreaseStamina(100);
             myRb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             isGround = false;
         }
@@ -107,6 +110,7 @@ public class PlayerController : MonoBehaviour
             }
             gunController.CancelFineSight();
             isRun = true;
+            statusController.DecreaseStamina(10);
             applySpeed = RunSpeed;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
