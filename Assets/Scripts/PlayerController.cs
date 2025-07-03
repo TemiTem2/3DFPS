@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)//점프 시도
+        if (Input.GetKeyDown(KeyCode.Space) && isGround&&statusController.GetCurrentSp()>0)//점프 시도
         {
             Jump();
         }
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
     }
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && statusController.GetCurrentSp() > 0)
         {
             if (isCrouch)//앉은 상태에서 달리기시 앉기 해제
             {
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
             statusController.DecreaseStamina(10);
             applySpeed = RunSpeed;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || statusController.GetCurrentSp() <= 0)
         {
             isRun = false;
             applySpeed = WalkSpeed;
