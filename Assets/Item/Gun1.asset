@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb24a1ad3152e7439c5eed0ddf1456a, type: 3}
   m_Name: Gun1
   m_EditorClassIdentifier: 
-  itemName: SubMachineGun
+  itemName: SubMachineGun1
   itemImage: {fileID: 21300000, guid: 5e0ba144fd3dc334bb4027b303056c22, type: 3}
   itemType: 0
   itemPrefab: {fileID: 3247384575085346205, guid: 6431b0fd98e5b1840870e2a197fb1adf, type: 3}
-  weaponType: 
+  weaponType: Gun
