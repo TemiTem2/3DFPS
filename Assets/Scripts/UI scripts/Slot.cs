@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor.UIElements;
 
-public class Slot : MonoBehaviour , IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler,IDropHandler
+public class Slot : MonoBehaviour , IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler,IDropHandler,IPointerEnterHandler, IPointerExitHandler
 {
     public Item item;
     public int itemCount;
@@ -15,6 +15,8 @@ public class Slot : MonoBehaviour , IPointerClickHandler,IBeginDragHandler, IDra
     private GameObject go_CountImage;
 
     private ItemEffectDatabase itemEffectDatabase;
+
+    
 
 
     void Start()
@@ -137,5 +139,16 @@ public class Slot : MonoBehaviour , IPointerClickHandler,IBeginDragHandler, IDra
         DragSlot.instance.SetColor(0);
         DragSlot.instance.dragSlot = null;
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item != null)
+            itemEffectDatabase.ShowTooltip(item,transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        itemEffectDatabase.HideTooltip();
     }
 }
