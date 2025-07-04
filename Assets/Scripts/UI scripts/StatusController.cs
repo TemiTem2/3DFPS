@@ -37,7 +37,7 @@ public class StatusController : MonoBehaviour
     private int currentThirstyDecreaseTime;
     [SerializeField]//¸¸Á·µµ
     private int satisfy;
-    private int currentsatisfy;
+    private int currentSatisfy;
 
     [SerializeField]
     private Image[] images_Gauge;
@@ -51,7 +51,7 @@ public class StatusController : MonoBehaviour
         currentSp = sp;
         currentHungry = hungry;
         currentThirsty = thirsty;
-        currentsatisfy = satisfy;
+        currentSatisfy = satisfy;
     }
 
     private void Update()
@@ -133,7 +133,7 @@ public class StatusController : MonoBehaviour
         images_Gauge[SP].fillAmount = (float)currentSp / sp;
         images_Gauge[HUNGRY].fillAmount = (float)currentHungry / hungry;
         images_Gauge[THIRSTY].fillAmount = (float)currentThirsty / thirsty;
-        images_Gauge[SATISFY].fillAmount = (float)currentsatisfy / satisfy;
+        images_Gauge[SATISFY].fillAmount = (float)currentSatisfy / satisfy;
     }
 
 
@@ -223,6 +223,40 @@ public class StatusController : MonoBehaviour
         }
         else
             currentThirsty -= count;
+    }
+    public void IncreaseSatisfy(int count)
+    {
+        if (currentSatisfy + count < satisfy)
+        {
+            currentSatisfy += count;
+        }
+        else
+        {
+            currentSatisfy = satisfy;
+        }
+    }
+
+    public void DecreaseSatisfy(int count)
+    {
+        if (currentSatisfy - count < 0)
+        {
+            currentSatisfy = 0;
+            return;
+        }
+        else
+            currentSatisfy -= count;
+    }
+
+    public void IncreaseSp(int count)
+    {
+        if (currentSp + count < sp)
+        {
+            currentSp += count;
+        }
+        else
+        {
+            currentSp = sp;
+        }
     }
     public void DecreaseStamina(int count)
     {
