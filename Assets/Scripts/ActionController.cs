@@ -14,6 +14,8 @@ public class ActionController : MonoBehaviour
 
     [SerializeField]
     private Text actionText;
+    [SerializeField]
+    private Inventory inventory;
 
     // Update is called once per frame
     void Update()
@@ -62,6 +64,7 @@ public class ActionController : MonoBehaviour
             if (hitinfo.transform != null)
             {
                 Debug.Log("æ∆¿Ã≈€ »πµÊ: " + hitinfo.transform.GetComponent<ItemPickUp>().item.itemName);
+                inventory.AcquireItem(hitinfo.transform.GetComponent<ItemPickUp>().item);
                 Destroy(hitinfo.transform.gameObject);
                 InfoDisappear();
             }
