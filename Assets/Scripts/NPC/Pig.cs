@@ -8,44 +8,58 @@ public class Pig : MonoBehaviour
     [SerializeField] private int hp;
 
     [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+    private float applySpeed;
 
     private Vector3 direction;
     private bool isWalking ;
+    private bool isRunning;
     private bool isAction;
+    private bool isDead;
     [SerializeField] private float walkTime;
     [SerializeField] private float waitTime;
+    [SerializeField] private float runTime;
     private float currentTime;
 
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rigid;
     [SerializeField] private BoxCollider boxcol;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip[] sound_pig;
+    [SerializeField] private AudioClip sound_pig_hurt;
+    [SerializeField] private AudioClip sound_pig_dead;
 
     private void Start()
     {
         currentTime = waitTime;
         isAction = true;
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
-        ElapseTime();
-        Move();
-        Rotation(); ;
+        if (!isDead) 
+        {
+            ElapseTime();
+            Move();
+            Rotation();
+        }
+        
     }
 
     private void Move()
     {
-        if (isWalking)
+        if (isWalking||isRunning)
         {
-            rigid.MovePosition(transform.position + transform.forward * walkSpeed * Time.deltaTime);
+            rigid.MovePosition(transform.position + transform.forward * applySpeed * Time.deltaTime);
         }
 
     }
 
     private void Rotation()
     {
-        if (isWalking)
+        if (isWalking||isRunning)
         {
-            Vector3 rotation = Vector3.Lerp(transform.eulerAngles, direction, 0.01f);
+            Vector3 rotation = Vector3.Lerp(transform.eulerAngles,new Vector3(0, direction.y,0), 0.01f);
             rigid.MoveRotation(Quaternion.Euler(rotation));
         }
     }
@@ -64,9 +78,12 @@ public class Pig : MonoBehaviour
     private void ReSet()
     {
         isWalking = false;
+        isRunning = false;
         isAction = true;
         anim.SetBool("Walking", isWalking);
+        anim.SetBool("Running", isRunning);
         direction.Set(0, Random.Range(0f,360f), 0);
+        applySpeed = walkSpeed;
         RandomAction();
     }
 
@@ -74,6 +91,7 @@ public class Pig : MonoBehaviour
     {
         
         int _random = Random.Range(0, 4);
+        PlayRandomSound();
 
         if (_random == 0)
         {
@@ -112,6 +130,53 @@ public class Pig : MonoBehaviour
     {
         currentTime = walkTime;
         isWalking = true;
+        applySpeed = walkSpeed;
         anim.SetBool("Walking", isWalking);
+    }
+    private void Run(Vector3 _targetPos)
+    {
+        direction = Quaternion.LookRotation(transform.position- _targetPos).eulerAngles;
+
+        currentTime = runTime;
+        applySpeed = runSpeed;
+        isWalking = false;
+        isRunning = true;
+        anim.SetBool("Running", isRunning);
+    }
+
+    public void Damage(int _damaga,Vector3 _targetPos)
+    {
+        if (!isDead)
+        {
+            hp -= _damaga;
+            if (hp <= 0)
+            {
+                Dead();
+                return;
+            }
+            PlaySE(sound_pig_hurt);
+            anim.SetTrigger("Hurt");
+            Run(_targetPos);
+        }
+        
+    }
+    private void Dead()
+    {
+        PlaySE(sound_pig_dead);
+        anim.SetTrigger("Dead");
+        isWalking = false;
+        isRunning = false;
+        isDead = true;
+    }
+
+    private void PlayRandomSound()
+    {
+        int _random = Random.Range(0, sound_pig.Length);
+        PlaySE(sound_pig[_random]);
+    }
+    private void PlaySE(AudioClip _clip)
+    {
+        audioSource.clip = _clip;
+        audioSource.Play();
     }
 }
