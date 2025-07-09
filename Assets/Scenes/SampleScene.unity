@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 9598905}
   - component: {fileID: 9598909}
   - component: {fileID: 9598910}
+  - component: {fileID: 9598911}
   m_Layer: 0
   m_Name: pig
   m_TagString: WeakAnimal
@@ -161,7 +162,6 @@ MonoBehaviour:
   hp: 2
   walkSpeed: 1
   runSpeed: 4
-  turningSpeed: 0.5
   walkTime: 5
   waitTime: 4
   runTime: 4
@@ -361,6 +361,28 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!195 &9598911
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9598904}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.5
+  m_BaseOffset: -0.2
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &21596027
 GameObject:
   m_ObjectHideFlags: 0
@@ -8770,6 +8792,7 @@ GameObject:
   - component: {fileID: 1053738601}
   - component: {fileID: 1053738600}
   - component: {fileID: 1053738599}
+  - component: {fileID: 1053738603}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -8868,6 +8891,38 @@ Transform:
   - {fileID: 703811960}
   m_Father: {fileID: 1134781225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053738603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053738598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: c6c23d77205da1a4382c3fd227a4b502, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!224 &1086749078 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 832463224904900219, guid: 5c9eb0cd378b3124e89d96f2a8360a90, type: 3}
