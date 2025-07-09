@@ -9816,7 +9816,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 817eb1e513db43547ad5bfc554528e15, type: 2}
+      objectReference: {fileID: 2100000, guid: 7cdc1b6fde1e69340a982f9037292439, type: 2}
     - target: {fileID: 919132149155446097, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: m_Name
       value: Wall (1)
@@ -9894,7 +9894,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 817eb1e513db43547ad5bfc554528e15, type: 2}
+      objectReference: {fileID: 2100000, guid: 15caadab68d430741b3b980aa154f362, type: 2}
     - target: {fileID: 919132149155446097, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: m_Name
       value: Wall (2)
@@ -9972,7 +9972,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 817eb1e513db43547ad5bfc554528e15, type: 2}
+      objectReference: {fileID: 2100000, guid: e839c8f7aa3212e43b5d8e8646d29b72, type: 2}
     - target: {fileID: 919132149155446097, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: m_Name
       value: Wall (3)
@@ -10050,7 +10050,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 817eb1e513db43547ad5bfc554528e15, type: 2}
+      objectReference: {fileID: 2100000, guid: bdcbb3877af69e340a26b51ccd4f311d, type: 2}
     - target: {fileID: 919132149155446097, guid: a2b554834678ff648a2ef1fa25d482ea, type: 3}
       propertyPath: m_Name
       value: Wall
