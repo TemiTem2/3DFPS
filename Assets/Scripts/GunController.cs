@@ -20,6 +20,8 @@ public class GunController : MonoBehaviour
     private AudioSource audioSource;
 
     private RaycastHit hitinfo;
+    [SerializeField]
+    private LayerMask layerMask; // 레이어 마스크 설정
 
     [SerializeField]
     private Camera thecam;
@@ -97,7 +99,7 @@ public class GunController : MonoBehaviour
             Random.Range(-crosshair.GetGunAccuracy()-currentGun.accuracy, crosshair.GetGunAccuracy() + currentGun.accuracy), 
             Random.Range(-crosshair.GetGunAccuracy() - currentGun.accuracy, crosshair.GetGunAccuracy() + currentGun.accuracy),
             0)
-            , out hitinfo, currentGun.range))
+            , out hitinfo, currentGun.range,layerMask))
         {
             var clone = Instantiate(hit_effect_prefab, hitinfo.point, Quaternion.LookRotation(hitinfo.normal)); // 히트 이펙트 생성
             Destroy(clone, 2f);
